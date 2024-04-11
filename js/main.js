@@ -1,13 +1,8 @@
 $(document).ready(function() {
-    $('#carousel-imagens').slick({
-        autoplay:true
-    });
-
-    $('.menu-hamburguer').click(function() {
-        $('nav').slideToggle();
-    })
 
     $('#telefone').mask('(00)00000-0000')
+    $('#cpf').mask('000.000.000-00')
+    $('#cep').mask('00000-000')
 
     $('form').validate({
         rules: {
@@ -22,15 +17,25 @@ $(document).ready(function() {
                 required: true,
                 minlength: 14
             },
-            mensagem: {
-                required: true
+            cpf: {
+                required: true,
+                minlength: 14
             },
-            veiculoDeInteresse: {
-                required: false
+            cep: {
+                required: true,
+                minlength: 9
+            },
+            endereco: {
+                required: true
             }
         },
         messages: {
-            nome: 'Por favor, insira o seu nome.'
+            nome: 'Por favor, insira o seu nome.',
+            email: 'Por favor, insira o seu e-mail.',
+            telefone: 'Por favor, insira o seu número de telefone.',
+            cpf: 'Por favor, insira o seu CPF.',
+            cep: 'Por favor, insira o seu CEP.',
+            endereco: 'Por favor, insira o seu endereço completo.'
         },
         submitHandler: function(form) {
             console.log(form)
@@ -38,7 +43,7 @@ $(document).ready(function() {
         invalidHandler: function(evento, validador) {
             let camposIncorretos = validador.numberOfInvalids();
             if (camposIncorretos) {
-                alert(`Um total de ${camposIncorretos} campos não foram inseridos corretamente. Tente novamente.`)
+                alert(`Um total de ${camposIncorretos} campos não foram inseridos corretamente. Confira as informações preenchidas e tente novamente.`)
             }
         }
     })
